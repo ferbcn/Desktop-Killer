@@ -1,6 +1,5 @@
-# Desktop-Killer
+# Desktop-Killer <img src="button.png" alt="button" width="100"/>
 
-<img src="button.png" alt="button" width="100"/>
 ### Python App with GUI (tkinter or PyQt5) that hides all icons on the desktop
 
 #### Platform: OSX
