@@ -1,4 +1,4 @@
-# Desktop-Killer <img src="button.png" alt="button" width="100"/>
+# Desktop-Killer <img src="button.png" alt="button" width="100" align="center"/>
 
 ### Python App with GUI (tkinter or PyQt5) that hides all icons on the desktop
 
