@@ -1,5 +1,6 @@
 # Desktop-Killer
 
+![button](button.png)
 ### Python App with GUI (tkinter or PyQt5) that hides all icons on the desktop
 
 #### Platform: OSX
