@@ -3,10 +3,9 @@ Desktop Icon Hide Button
 Implemented in Python
 GUI (Tkinter)
 Author: ferbcn
-TO-DO: Win & Linux
 """
 
-import sys
+# import sys
 import os
 from tkinter import *
 import platform
@@ -18,28 +17,40 @@ class Application(Frame):
         self.pack()
         self.createWidgets()
         self.icons_hidden = False
+        self.os = platform.system() # Darwin, Linux, Windows
+
+
+    def createWidgets(self):
+        self.killer = Button(self, text="HIDE", command=self.hide_desktop, width=30, height=30, fg='Red')
+        self.killer.pack()
 
 
     def hide_desktop(self):
         if not self.icons_hidden:
+            if self.os == "Darwin":
+                os.system('defaults write com.apple.finder CreateDesktop false')
+            elif self.os == "Linux":
+                os.system('gsettings set org.gnome.desktop.background show-desktop-icons True')
+            elif self.os == "Windows":
+                pass
+            else:
+                print('Sorry, OS not supported!')
             print('Hiding Desktop Icons')
-            os.system('defaults write com.apple.finder CreateDesktop false')
             self.icons_hidden = True
-            self.killer.config(text='UNHIDE')
-            #self.button.setStyleSheet("background-color: darkgrey")
+            self.killer.config(text='UNHIDE', fg='Green')
         else:
             print('Showing Desktop Icons')
-            os.system('defaults write com.apple.finder CreateDesktop true')
+            if self.os == "Darwin":
+                os.system('defaults write com.apple.finder CreateDesktop true')
+            elif self.os == "Linux":
+                os.system('gsettings set org.gnome.desktop.background show-desktop-icons True')
+            elif self.os == "Windows":
+                pass
+            else:
+                print('Sorry, OS not supported!')
             self.icons_hidden = False
-            self.killer.config(text='HIDE')
-            #self.button.setText('HIDE')
-            #self.button.setStyleSheet("background-color: lightgrey")
+            self.killer.config(text='HIDE', fg='Red')
         os.system('killall Finder')
-
-    def createWidgets(self):
-        #self.killer = Button(self, text='HIDE', bg='#0052cc', fg='#ffffff', command='self.hide_desktop')
-        self.killer = Button(self, text="HIDE", command=self.hide_desktop, width=30, height=30)
-        self.killer.pack()
 
 
 if __name__ == '__main__':
